@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Mixer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 90%;
+        }
+
+        .title {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .color-pickers {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 3rem;
+            gap: 2rem;
+        }
+
+        .color-picker-section {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        input[type="color"] {
+            width: 100px;
+            height: 100px;
+            border: none;
+            border-radius: 50%;
+            background: none;
+            cursor: pointer;
+        }
+
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .color-values {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .color-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .selected-color {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            margin: 10px auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .mix-button {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            display: inline-block;
+        }
+
+        .mix-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .result-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            margin: 20px auto;
+            background-color: #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .color-code {
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .history-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .color-history {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .history-item {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes colorChange {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .color-change-animation {
+            animation: colorChange 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Color Mixer</h1>
+        
+        <div class="color-pickers">
+            <div class="color-picker-section">
+                <h2>RENK 1</h2>
+                <input type="color" id="color1" onchange="updateSelectedColor(1)">
+                <div class="color-values">
+                    <span id="colorValue1"></span>
+                </div>
+            </div>
+
+            <div class="color-picker-section">
+                <h2>RENK 2</h2>
+                <input type="color" id="color2" onchange="updateSelectedColor(2)">
+                <div class="color-values">
+                    <span id="colorValue2"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="color-display">
+            <div class="selected-color" id="selectedColor1"></div>
+            <div style="font-size: 24px">+</div>
+            <div class="selected-color" id="selectedColor2"></div>
+        </div>
+
+        <button class="mix-button" onclick="mixColors()">RENKLERİ KARIŞTIR</button>
+
+        <div class="result-section">
+            <div class="result-circle" id="resultColor"></div>
+            <div class="color-code" id="colorCode">#RENK KODU</div>
+        </div>
+
+        <div class="history-section">
+            <h3>Renk Geçmişi</h3>
+            <div class="color-history" id="colorHistory"></div>
+        </div>
+    </div>
+
+    <script>
+        let colorHistory = [];
+
+        function updateSelectedColor(colorNum) {
+            const color = document.getElementById(`color${colorNum}`).value;
+            const selectedColor = document.getElementById(`selectedColor${colorNum}`);
+            const colorValue = document.getElementById(`colorValue${colorNum}`);
+            
+            selectedColor.style.backgroundColor = color;
+            colorValue.textContent = color.toUpperCase();
+            
+            selectedColor.classList.add('color-change-animation');
+            setTimeout(() => {
+                selectedColor.classList.remove('color-change-animation');
+            }, 500);
+        }
+
+        function mixColors() {
+            const color1 = document.getElementById('color1').value;
+            const color2 = document.getElementById('color2').value;
+
+            const rgb1 = hexToRgb(color1);
+            const rgb2 = hexToRgb(color2);
+            
+            const mixedRgb = {
+                r: Math.round((rgb1.r + rgb2.r) / 2),
+                g: Math.round((rgb1.g + rgb2.g) / 2),
+                b: Math.round((rgb1.b + rgb2.b) / 2)
+            };
+
+            const mixedColor = rgbToHex(mixedRgb.r, mixedRgb.g, mixedRgb.b);
+            
+            const resultCircle = document.getElementById('resultColor');
+            resultCircle.style.backgroundColor = mixedColor;
+            resultCircle.classList.add('color-change-animation');
+            
+            setTimeout(() => {
+                resultCircle.classList.remove('color-change-animation');
+            }, 500);
+
+            document.getElementById('colorCode').textContent = mixedColor.toUpperCase();
+            addToHistory(mixedColor);
+        }
+
+        function addToHistory(color) {
+            if (!colorHistory.includes(color)) {
+                colorHistory.unshift(color);
+                if (colorHistory.length > 10) colorHistory.pop();
+                updateHistoryDisplay();
+            }
+        }
+
+        function updateHistoryDisplay() {
+            const historyContainer = document.getElementById('colorHistory');
+            historyContainer.innerHTML = '';
+            
+            colorHistory.forEach(color => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.style.backgroundColor = color;
+                historyItem.title = color;
+                historyItem.onclick = () => {
+                    document.getElementById('resultColor').style.backgroundColor = color;
+                    document.getElementById('colorCode').textContent = color.toUpperCase();
+                };
+                historyContainer.appendChild(historyItem);
+            });
+        }
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
+
+        // Initialize with default colors
+        window.onload = function() {
+            document.getElementById('color1').value = '#ff0000';
+            document.getElementById('color2').value = '#00ff00';
+            updateSelectedColor(1);
+            updateSelectedColor(2);
+        };
+    </script>
+</body>
+</html>
