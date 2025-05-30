@@ -2,7 +2,7 @@
 
 **ColorMix**, kullanıcıların iki rengi seçip karıştırarak yeni renkler oluşturmasına ve bu renklerin HEX kodlarını görüntüleyip kopyalamasına olanak tanıyan basit ve sezgisel bir web uygulamasıdır.
 
-[🔗 Canlı Demo](https://x3eeX6-q.github.io/ColorMix.github.io/)
+[🔗 Canlı Demo](https://oyunufosu.github.io/ColorMix.github.io/)
 
 ---
 
