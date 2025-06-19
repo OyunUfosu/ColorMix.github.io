@@ -11,19 +11,33 @@ Kullanıcılar renkleri karıştırabilir, paletler oluşturabilir, renk formatl
 ## 🚀 Özellikler
 
 🎨 Color Mixer: İki farklı rengi karıştırarak ara bir renk oluşturabilirsiniz.
+
 🌈 Palette Generator:
+
 -Analogous
+
 -Complementary
+
 -Triadic
+
 -Split Complementary
+
 -Random Harmony
+
 📂 Color History: Son kullanılan karışımlar ve palet renkleri geçmişte listelenir.
+
 🔄 Color Format Converter:
--HEX
+-
+HEX
+
 -RGB
+
 -HSL
--CMYK 
+
+-CMYK
+
 🖌️ Dinamik Arayüz: El boyaması hissi veren sade tasarım.
+
 📱 Mobil Uyumlu: Responsive tasarım ile her cihazda kullanılabilir.
 
 ---
