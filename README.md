@@ -1,6 +1,8 @@
 # 🎨 ColorMix
 
-**ColorMix**, kullanıcıların iki rengi seçip karıştırarak yeni renkler oluşturmasına ve bu renklerin HEX kodlarını görüntüleyip kopyalamasına olanak tanıyan basit ve sezgisel bir web uygulamasıdır.
+**ColorMix**, renklerle oynamayı sevenler için geliştirilmiş modern, interaktif ve tamamen tarayıcı tabanlı bir renk aracıdır. HTML, CSS ve JavaScript kullanılarak geliştirilmiştir.
+
+Kullanıcılar renkleri karıştırabilir, paletler oluşturabilir, renk formatlarını dönüştürebilir ve önceki seçimlerini görebilir.
 
 [🔗 Canlı Demo](https://oyunufosu.github.io/ColorMix.github.io/)
 
@@ -8,11 +10,21 @@
 
 ## 🚀 Özellikler
 
-- 🎨 Renk seçici ile 2 rengi ayrı ayrı seçme
-- 🔁 Renkleri karıştırarak ara renk üretme
-- 🔎 HEX kodlarını görme ve kopyalama
-- 💡 Basit, sade ve kullanıcı dostu arayüz
-- 🔒 Tamamen istemci taraflı – veri gizliliği
+🎨 Color Mixer: İki farklı rengi karıştırarak ara bir renk oluşturabilirsiniz.
+🌈 Palette Generator:
+-Analogous
+-Complementary
+-Triadic
+-Split Complementary
+-Random Harmony
+📂 Color History: Son kullanılan karışımlar ve palet renkleri geçmişte listelenir.
+🔄 Color Format Converter:
+-HEX
+-RGB
+-HSL
+-CMYK 
+🖌️ Dinamik Arayüz: El boyaması hissi veren sade tasarım.
+📱 Mobil Uyumlu: Responsive tasarım ile her cihazda kullanılabilir.
 
 ---
 
