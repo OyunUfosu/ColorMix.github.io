@@ -27,8 +27,8 @@ Kullanıcılar renkleri karıştırabilir, paletler oluşturabilir, renk formatl
 📂 Color History: Son kullanılan karışımlar ve palet renkleri geçmişte listelenir.
 
 🔄 Color Format Converter:
--
-HEX
+
+-HEX
 
 -RGB
 
