@@ -26,6 +26,8 @@ Kullanıcılar renkleri karıştırabilir, paletler oluşturabilir, renk formatl
 
 📂 Color History: Son kullanılan karışımlar ve palet renkleri geçmişte listelenir.
 
+🔄 WCAG Contrast Checker
+
 🔄 Color Format Converter:
 
 -HEX
