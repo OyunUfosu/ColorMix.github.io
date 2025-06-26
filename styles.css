@@ -329,3 +329,65 @@ input[type="color"]::-webkit-color-swatch {
     max-width: 100%;
     word-break: break-all;
 }
+/* Contrast Checker Styles */
+.contrast-controls {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.contrast-picker {
+    flex: 1;
+    max-width: 300px;
+    text-align: center;
+}
+
+.contrast-result {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.contrast-preview {
+    margin-bottom: 1rem;
+}
+
+.contrast-sample {
+    padding: 1.5rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.contrast-score {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.contrast-verdict {
+    font-size: 1rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    display: inline-block;
+}
+
+.contrast-verdict.pass {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.contrast-verdict.fail {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+@media (max-width: 768px) {
+    .contrast-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+}
