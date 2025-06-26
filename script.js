@@ -16,7 +16,68 @@ document.addEventListener('DOMContentLoaded', function() {
     const convertButton = document.getElementById('convertButton');
     const convertedColor = document.getElementById('convertedColor');
     const convertedCode = document.getElementById('convertedCode');
+    const bgColorInput = document.getElementById('bgColor');
+    const textColorInput = document.getElementById('textColor');
+    const bgColorValue = document.getElementById('bgColorValue');
+    const textColorValue = document.getElementById('textColorValue');
+    const contrastSample = document.getElementById('contrastSample');
+    const contrastScore = document.getElementById('contrastScore');
+    const contrastVerdict = document.getElementById('contrastVerdict');
     
+   initContrastChecker();
+   
+// Contrast Checker Functions
+function initContrastChecker() {
+    bgColorInput.value = '#ffffff';
+    textColorInput.value = '#000000';
+    updateContrastChecker();
+    
+    bgColorInput.addEventListener('input', updateContrastChecker);
+    textColorInput.addEventListener('input', updateContrastChecker);
+}
+
+function updateContrastChecker() {
+    const bgColor = bgColorInput.value;
+    const textColor = textColorInput.value;
+    
+    bgColorValue.textContent = bgColor.toUpperCase();
+    textColorValue.textContent = textColor.toUpperCase();
+    
+    contrastSample.style.backgroundColor = bgColor;
+    contrastSample.style.color = textColor;
+    
+    const contrast = tinycolor.readability(bgColor, textColor);
+    const ratio = contrast.toFixed(2);
+    
+    contrastScore.textContent = `Contrast Ratio: ${ratio}:1`;
+    
+    // Check WCAG compliance
+    const aaNormal = tinycolor.isReadable(bgColor, textColor, { level: 'AA', size: 'normal' });
+    const aaLarge = tinycolor.isReadable(bgColor, textColor, { level: 'AA', size: 'large' });
+    const aaaNormal = tinycolor.isReadable(bgColor, textColor, { level: 'AAA', size: 'normal' });
+    const aaaLarge = tinycolor.isReadable(bgColor, textColor, { level: 'AAA', size: 'large' });
+    
+    let verdictText = '';
+    let verdictClass = '';
+    
+    if (aaaNormal) {
+        verdictText = 'Excellent contrast (AAA for normal text)';
+        verdictClass = 'pass';
+    } else if (aaNormal) {
+        verdictText = 'Good contrast (AA for normal text)';
+        verdictClass = 'pass';
+    } else if (aaLarge) {
+        verdictText = 'Passes AA for large text only';
+        verdictClass = 'pass';
+    } else {
+        verdictText = 'Does not meet minimum contrast requirements';
+        verdictClass = 'fail';
+    }
+    
+    contrastVerdict.textContent = verdictText;
+    contrastVerdict.className = 'contrast-verdict ' + verdictClass;
+}
+
     // Palette Generator Variables
     const baseColorInput = document.getElementById('baseColor');
     const baseColorValue = document.getElementById('baseColorValue');
