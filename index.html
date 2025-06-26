@@ -96,9 +96,44 @@
         <div class="converted-color" id="convertedColor"></div>
         <div class="converted-code" id="convertedCode">#3A7BD5</div>
     </div>
+    <div class="section">
+    <h2 class="section-title">WCAG Contrast Checker</h2>
+    
+    <div class="contrast-controls">
+        <div class="contrast-picker">
+            <h3>Background Color</h3>
+            <input type="color" id="bgColor" value="#ffffff">
+            <div class="color-values">
+                <span id="bgColorValue">#FFFFFF</span>
+            </div>
+        </div>
+        
+        <div class="contrast-picker">
+            <h3>Text Color</h3>
+            <input type="color" id="textColor" value="#000000">
+            <div class="color-values">
+                <span id="textColorValue">#000000</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="contrast-result" id="contrastResult">
+        <div class="contrast-preview">
+            <div class="contrast-sample" id="contrastSample">
+                Sample text for contrast testing
+            </div>
+        </div>
+        <div class="contrast-score" id="contrastScore">
+            Contrast Ratio: --:1
+        </div>
+        <div class="contrast-verdict" id="contrastVerdict">
+            Checking accessibility...
+        </div>
+    </div>
+</div>
 </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.6.0/tinycolor.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
